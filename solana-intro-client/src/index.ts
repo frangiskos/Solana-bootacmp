@@ -10,7 +10,14 @@ async function main() {
     const signer = await initializeKeypair(connection);
     console.log('Public key:', signer.publicKey.toBase58());
 
-    await airdropSolIfNeeded(signer, connection);
+    const secretKey = signer.secretKey;
+    console.log('Secret key:', secretKey);
+
+    // show secret key in hex
+    const secretKeyHex = Buffer.from(secretKey).toString('hex');
+    console.log('Secret key (hex):', secretKeyHex);
+
+    // await airdropSolIfNeeded(signer, connection);
 
     // await pingProgram(connection, signer);
 
