@@ -1,7 +1,7 @@
-import { FC } from 'react'
-import styles from '../styles/Home.module.css'
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
-import Image from 'next/image'
+import { FC } from 'react';
+import styles from '../styles/Home.module.css';
+import Image from 'next/image';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 
 export const AppBar: FC = () => {
     return (
@@ -10,5 +10,5 @@ export const AppBar: FC = () => {
             <span>Wallet-Adapter Example</span>
             <WalletMultiButton />
         </div>
-    )
-}
+    );
+};
