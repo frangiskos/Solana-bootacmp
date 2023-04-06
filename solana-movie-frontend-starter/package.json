@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.8.8",
+    "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@solana/wallet-adapter-react-ui": "^0.9.6",
