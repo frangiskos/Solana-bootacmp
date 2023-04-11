@@ -17,3 +17,9 @@ To get secret key for importing into a wallet use:
     const secretKeyHex = Buffer.from(secretKey).toString('hex');
     console.log('Secret key (hex):', secretKeyHex);
 ```
+
+The token mint account address is FpMt5qJ4AvPwNzdGz1c9upvkitM1j3oNsZ7Fp91jXmGp
+Token Mint: <https://explorer.solana.com/address/FpMt5qJ4AvPwNzdGz1c9upvkitM1j3oNsZ7Fp91jXmGp?cluster=devnet>
+Token Account: <https://explorer.solana.com/address/Go8s8iykMx2A8ypJ1FuUHTuUUHMfPxk2V4xFdWhToJxv?cluster=devnet>
+
+Mint Token Transaction: <https://explorer.solana.com/tx/2vm7SniDhiCWiCoQH1CCtzwgSZFdtm1DpHhFejaXaDJnYCtPy8HSWM3WPUD19W3gq7x9yyd1p4azy9SntUbv9h2T?cluster=devnet>

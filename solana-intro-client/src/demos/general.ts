@@ -1,5 +1,18 @@
 import * as Web3 from '@solana/web3.js';
 
+export async function runGeneralDemos(connection: Web3.Connection, signer: Web3.Keypair) {
+    await pingProgram(connection, signer);
+
+    await transferSolToAccount(
+        connection,
+        signer,
+        new Web3.PublicKey('5ThZAMY4RFdKXEBumQWoA7R42aaJrW2XswzzeS6B76Ej'),
+        123
+    );
+
+    showSecretKey(signer);
+}
+
 const PROGRAM_ID = new Web3.PublicKey('ChT1B39WKLS8qUrkLvFDXMhEJ4F1XZzwUNHUt4AU9aVa');
 const PROGRAM_DATA_PUBLIC_KEY = new Web3.PublicKey('Ah9K7dQ8EHaZqcAsgBW8w37yN2eAy3koFmUn4x3CJtod');
 
@@ -47,4 +60,13 @@ export async function transferSolToAccount(
     const transactionSignature = await Web3.sendAndConfirmTransaction(connection, transaction, [payer]);
 
     console.log(`Transaction https://explorer.solana.com/tx/${transactionSignature}?cluster=devnet`);
+}
+
+export function showSecretKey(signer: Web3.Keypair) {
+    const secretKey = signer.secretKey;
+    console.log('Secret key:', secretKey);
+
+    // show secret key in hex - can be used to import into Phantom
+    const secretKeyHex = Buffer.from(secretKey).toString('hex');
+    console.log('Secret key (hex):', secretKeyHex);
 }

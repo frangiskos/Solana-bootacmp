@@ -1,32 +1,13 @@
+import dotenv from 'dotenv';
 import * as Web3 from '@solana/web3.js';
 import { airdropSolIfNeeded, initializeKeypair } from './lib';
-
-import dotenv from 'dotenv';
-import { pingProgram, transferSolToAccount } from './sampleApps';
-dotenv.config();
+import { runGeneralDemos } from './demos/general';
+import { runCreateTokenDemos } from './demos/token';
 
 async function main() {
-    const connection = new Web3.Connection(Web3.clusterApiUrl('devnet'));
-    const signer = await initializeKeypair(connection);
-    console.log('Public key:', signer.publicKey.toBase58());
-
-    const secretKey = signer.secretKey;
-    console.log('Secret key:', secretKey);
-
-    // show secret key in hex
-    const secretKeyHex = Buffer.from(secretKey).toString('hex');
-    console.log('Secret key (hex):', secretKeyHex);
-
-    // await airdropSolIfNeeded(signer, connection);
-
-    // await pingProgram(connection, signer);
-
-    // await transferSolToAccount(
-    //     connection,
-    //     signer,
-    //     new Web3.PublicKey('5ThZAMY4RFdKXEBumQWoA7R42aaJrW2XswzzeS6B76Ej'),
-    //     123
-    // );
+    const { connection, signer } = await init();
+    await runGeneralDemos(connection, signer);
+    await runCreateTokenDemos(connection, signer);
 }
 
 main()
@@ -38,3 +19,12 @@ main()
         console.log(error);
         process.exit(1);
     });
+
+async function init() {
+    dotenv.config();
+    const connection = new Web3.Connection(Web3.clusterApiUrl('devnet'));
+    const signer = await initializeKeypair(connection);
+    await airdropSolIfNeeded(signer, connection);
+    console.log('Public key:', signer.publicKey.toBase58());
+    return { connection, signer };
+}
