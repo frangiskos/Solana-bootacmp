@@ -1,13 +1,25 @@
 import dotenv from 'dotenv';
-import * as Web3 from '@solana/web3.js';
+import * as web3 from '@solana/web3.js';
 import { airdropSolIfNeeded, initializeKeypair } from './lib';
 import { runGeneralDemos } from './demos/general';
 import { runCreateTokenDemos } from './demos/token';
+import { createTokenMetadata } from './demos/tokenMetadata';
 
 async function main() {
-    const { connection, signer } = await init();
-    await runGeneralDemos(connection, signer);
-    await runCreateTokenDemos(connection, signer);
+    const { connection, user } = await init();
+    // await runGeneralDemos(connection, user);
+    // const { mint, tokenAccount } = await runCreateTokenDemos(connection, user);
+    const mint = new web3.PublicKey('FpMt5qJ4AvPwNzdGz1c9upvkitM1j3oNsZ7Fp91jXmGp');
+    await createTokenMetadata({
+        connection,
+        user,
+        mint,
+        name: 'Zombie',
+        symbol: 'ZBI',
+        description: 'You have captured a zombie',
+        assetPath: './assets/zombie.png',
+        assetName: 'zombie.png',
+    });
 }
 
 main()
@@ -22,9 +34,9 @@ main()
 
 async function init() {
     dotenv.config();
-    const connection = new Web3.Connection(Web3.clusterApiUrl('devnet'));
-    const signer = await initializeKeypair(connection);
-    await airdropSolIfNeeded(signer, connection);
-    console.log('Public key:', signer.publicKey.toBase58());
-    return { connection, signer };
+    const connection = new web3.Connection(web3.clusterApiUrl('devnet'));
+    const user = await initializeKeypair(connection);
+    await airdropSolIfNeeded(user, connection);
+    console.log('Public key:', user.publicKey.toBase58());
+    return { connection, user };
 }

@@ -1,30 +1,32 @@
 import * as Web3 from '@solana/web3.js';
 import * as token from '@solana/spl-token';
 
-export async function runCreateTokenDemos(connection: Web3.Connection, signer: Web3.Keypair) {
-    console.log('PublicKey:', signer.publicKey.toBase58());
+export async function runCreateTokenDemos(connection: Web3.Connection, user: Web3.Keypair) {
+    console.log('PublicKey:', user.publicKey.toBase58());
 
     const mint = await createNewMint({
         connection,
-        payer: signer, // We'll pay the fees
-        mintAuthority: signer.publicKey, // We're the mint authority
-        freezeAuthority: signer.publicKey, // And the freeze authority >:)
+        payer: user, // We'll pay the fees
+        mintAuthority: user.publicKey, // We're the mint authority
+        freezeAuthority: user.publicKey, // And the freeze authority >:)
         decimals: 2, // Only two decimals!
     });
 
     const tokenAccount = await createTokenAccount(
-        { connection, payer: signer, mint, owner: signer.publicKey } // Associating our address with the token account
+        { connection, payer: user, mint, owner: user.publicKey } // Associating our address with the token account
     );
 
     // Mint 100 tokens to our address
     await mintTokens({
         connection,
-        payer: signer,
+        payer: user,
         mint,
         destination: tokenAccount.address,
-        authority: signer,
+        authority: user,
         amount: 100,
     });
+
+    return { mint, tokenAccount };
 }
 
 async function createNewMint({
