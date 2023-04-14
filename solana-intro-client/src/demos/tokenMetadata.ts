@@ -3,46 +3,6 @@ import { DataV2, createCreateMetadataAccountV2Instruction } from '@metaplex-foun
 import * as web3 from '@solana/web3.js';
 import fs from 'fs-extra';
 
-// async function main(
-//     connection: web3.Connection,
-//     user: web3.Keypair,
-//     {
-//         mint,
-//         tokenName,
-//         tokenSymbol,
-//         tokenDescription,
-//     }: {
-//         mint: string;
-//         tokenName: string;
-//         tokenSymbol: string;
-//         tokenDescription: string;
-//     }
-// ) {
-//     // // MAKE SURE YOU REPLACE THIS ADDRESS WITH YOURS!
-//     // const MINT_ADDRESS = "87MGWR6EbAqegYXr3LoZmKKC9fSFXQx4EwJEAczcMpMF"
-
-//     // metaplex setup
-//     const metaplex = Metaplex.make(connection)
-//         .use(keypairIdentity(user))
-//         .use(
-//             bundlrStorage({
-//                 address: 'https://devnet.bundlr.network',
-//                 providerUrl: 'https://api.devnet.solana.com',
-//                 timeout: 60000,
-//             })
-//         );
-
-//     // Calling the token
-//     await createTokenMetadata(
-//         connection,
-//         user,
-//         new web3.PublicKey(mint),
-//         'Zombie', // Token name - REPLACE THIS WITH YOURS
-//         'ZBI', // Token symbol - REPLACE THIS WITH YOURS
-//         'You have captured a zombie' // Token description - REPLACE THIS WITH YOURS
-//     );
-// }
-
 export async function createTokenMetadata({
     connection,
     user,

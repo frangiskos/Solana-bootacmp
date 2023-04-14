@@ -8,15 +8,19 @@ import { createTokenMetadata } from './demos/tokenMetadata';
 async function main() {
     const { connection, user } = await init();
     // await runGeneralDemos(connection, user);
-    // const { mint, tokenAccount } = await runCreateTokenDemos(connection, user);
-    const mint = new web3.PublicKey('FpMt5qJ4AvPwNzdGz1c9upvkitM1j3oNsZ7Fp91jXmGp');
+    const { mint, tokenAccount } = await runCreateTokenDemos(
+        connection,
+        user,
+        new web3.PublicKey('5ThZAMY4RFdKXEBumQWoA7R42aaJrW2XswzzeS6B76Ej')
+    );
+    // const mint = new web3.PublicKey('FpMt5qJ4AvPwNzdGz1c9upvkitM1j3oNsZ7Fp91jXmGp');
     await createTokenMetadata({
         connection,
         user,
         mint,
-        name: 'Zombie',
-        symbol: 'ZBI',
-        description: 'You have captured a zombie',
+        name: 'Zombie2',
+        symbol: 'ZBII',
+        description: 'You have captured a zombie2',
         assetPath: './assets/zombie.png',
         assetName: 'zombie.png',
     });
