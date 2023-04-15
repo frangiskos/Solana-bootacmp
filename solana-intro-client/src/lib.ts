@@ -1,5 +1,5 @@
 import * as web3 from '@solana/web3.js';
-import { Metaplex, bundlrStorage, keypairIdentity, toMetaplexFile } from '@metaplex-foundation/js';
+import { Metaplex, bundlrStorage, keypairIdentity } from '@metaplex-foundation/js';
 import * as fs from 'fs';
 import bs58 from 'bs58';
 
@@ -76,4 +76,13 @@ export async function getMintMetadataAddress(
 
     const metadataPDA = metaplex.nfts().pdas().metadata({ mint });
     return metadataPDA;
+}
+
+export async function accountExists(connection: web3.Connection, publicKey: web3.PublicKey) {
+    try {
+        await connection.getAccountInfo(publicKey);
+        return true;
+    } catch (error) {
+        return false;
+    }
 }
