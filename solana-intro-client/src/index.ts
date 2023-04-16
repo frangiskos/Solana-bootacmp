@@ -5,6 +5,7 @@ import { runGeneralDemos } from './demos/general';
 import { runCreateTokenDemos } from './demos/token';
 import { createTokenMetadata } from './demos/tokenMetadata';
 import { createTokenWithMetadata } from './demos/tokenWithMetaSingleTransaction';
+import { nftDemos } from './demos/nft';
 
 async function main() {
     dotenv.config();
@@ -58,6 +59,8 @@ async function main() {
             assetName: 'zombie.png',
         },
     });
+
+    // await nftDemos(connection, user);
 }
 
 main()
