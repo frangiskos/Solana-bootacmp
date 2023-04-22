@@ -1,0 +1,22 @@
+{
+  "tokenStandard": "nft",
+  "number": 10,
+  "symbol": "CRAB",
+  "sellerFeeBasisPoints": 100,
+  "isMutable": true,
+  "isSequential": false,
+  "creators": [
+    {
+      "address": "GDaKoZTQxaaci1Rwduyv1tYivh8Xb2VXMCS4TvkLovqK",
+      "share": 100
+    }
+  ],
+  "uploadMethod": "bundlr",
+  "ruleSet": null,
+  "awsConfig": null,
+  "nftStorageAuthToken": null,
+  "shdwStorageAccount": null,
+  "pinataConfig": null,
+  "hiddenSettings": null,
+  "guards": null
+}
