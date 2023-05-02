@@ -1,5 +1,5 @@
 {
-	"name": "Codespaces Rust Starter",
+	"name": "Codespaces Rust, Solana, Anchor Starter",
 	"extensions": [
 		"rust-lang.rust-analyzer",
 		"serayuzgur.crates",

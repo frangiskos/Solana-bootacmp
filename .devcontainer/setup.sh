@@ -8,6 +8,7 @@ apt-get install -y \
   sudo \
   zsh \
   vim \
+  nano \
   build-essential \
   openssl
   
@@ -26,7 +27,7 @@ apt-get install -y yarn
 
 ## Install rustup and common components
 curl https://sh.rustup.rs -sSf | sh -s -- -y
-export PATH=/root/.cargo/bin:$PATH
+export PATH="/root/.cargo/bin:$PATH"
 
 rustup install nightly
 rustup component add rustfmt
@@ -39,10 +40,18 @@ cargo install cargo-edit
 cargo install just
 cargo install cargo-workspaces
 
+## Install Solana
+sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
+export PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
+solana --version
+
+
 # Install Anchor
 cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
 avm install latest
 avm use latest
+anchor --version
+
 
 ## setup and install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
