@@ -14,6 +14,16 @@ apt-get install -y \
 ## update and install 2nd level of packages
 apt-get install -y pkg-config
 
+## Install NodeJS
+# apt-get install curl
+curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+apt-get install -y nodejs
+node -v
+npm -v
+
+## Install Yarn
+apt-get install -y yarn
+
 ## Install rustup and common components
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 export PATH=/root/.cargo/bin:$PATH
@@ -26,6 +36,8 @@ rustup component add clippy --toolchain nightly
 
 cargo install cargo-expand
 cargo install cargo-edit
+cargo install just
+cargo install cargo-workspaces
 
 # Install Anchor
 cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
