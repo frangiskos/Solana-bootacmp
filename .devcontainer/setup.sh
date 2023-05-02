@@ -2,6 +2,7 @@
 apt-get update
 apt-get install -y \
   curl \
+  wget \
   git \
   gnupg2 \
   jq \
