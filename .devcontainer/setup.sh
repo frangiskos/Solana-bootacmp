@@ -27,6 +27,11 @@ rustup component add clippy --toolchain nightly
 cargo install cargo-expand
 cargo install cargo-edit
 
+# Install Anchor
+cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
+avm install latest
+avm use latest
+
 ## setup and install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 cp -R /root/.oh-my-zsh /home/$USERNAME
