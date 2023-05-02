@@ -2,14 +2,14 @@
 seeds = false
 skip-lint = false
 [programs.localnet]
-demo1 = "Hk1omuaeJty8gEmyyKeN6T7cMJcfAuHwvLsBRGjWb6tM"
+demo2 = "GycxrN6qouVxtSeSyp8JNJNswXqtJsSRMHwqU1WSfpAX"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
 cluster = "Localnet"
-wallet = "/home/frangiskos/.config/solana/id.json"
+wallet = "/root/.config/solana/id.json"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
