@@ -24,7 +24,9 @@ node -v
 npm -v
 
 ## Install Yarn
-apt-get install -y yarn
+apt remove cmdtest -y
+corepack enable
+corepack prepare yarn@stable --activate
 
 ## Install rustup and common components
 curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -46,8 +48,16 @@ sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
 export PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
 solana --version
 
+## Configure Solana
+solana-keygen new -f -s --no-bip39-passphrase -o /root/.config/solana/id.json
+solana config set --keypair ~/.config/solana/id.json
+solana config set --url https://metaplex.devnet.rpcpool.com/
+solana airdrop 2
+solana address
+solana balance
 
-# Install Anchor
+
+## Install Anchor
 cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
 avm install latest
 avm use latest
