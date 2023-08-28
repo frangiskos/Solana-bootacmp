@@ -36,20 +36,24 @@ export async function airdropSolIfNeeded(signer: web3.Keypair, connection: web3.
 
     // 1 SOL should be enough for almost anything you wanna do
     if (balance / web3.LAMPORTS_PER_SOL < 1) {
-        // You can only get up to 2 SOL per request
-        console.log('Airdropping 1 SOL');
-        const airdropSignature = await connection.requestAirdrop(signer.publicKey, web3.LAMPORTS_PER_SOL);
-
-        const latestBlockhash = await connection.getLatestBlockhash();
-
-        await connection.confirmTransaction({
-            blockhash: latestBlockhash.blockhash,
-            lastValidBlockHeight: latestBlockhash.lastValidBlockHeight,
-            signature: airdropSignature,
-        });
-
-        const newBalance = await connection.getBalance(signer.publicKey);
-        console.log('New balance is', newBalance / web3.LAMPORTS_PER_SOL, 'SOL');
+        // You can only get up to 2 SOL per request per day
+        try {
+            console.log('Airdropping 1 SOL');
+            const airdropSignature = await connection.requestAirdrop(signer.publicKey, web3.LAMPORTS_PER_SOL);
+    
+            const latestBlockhash = await connection.getLatestBlockhash();
+    
+            await connection.confirmTransaction({
+                blockhash: latestBlockhash.blockhash,
+                lastValidBlockHeight: latestBlockhash.lastValidBlockHeight,
+                signature: airdropSignature,
+            });
+    
+            const newBalance = await connection.getBalance(signer.publicKey);
+            console.log('New balance is', newBalance / web3.LAMPORTS_PER_SOL, 'SOL');
+        } catch (error) {
+            console.error('Airdrop failed', error)
+        }
     }
 }
 
